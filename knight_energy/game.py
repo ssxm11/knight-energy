@@ -38,6 +38,10 @@ def player_has_energy(player: Player) -> bool:
     return player.energy > 0
 
 
+def can_current_player_move(state: GameState) -> bool:
+    return player_has_energy(current_player(state))
+
+
 def apply_move(state: GameState, target: Position) -> GameState:
     player = current_player(state)
     if not player_has_energy(player):

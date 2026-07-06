@@ -1,4 +1,4 @@
-from knight_energy.game import apply_move, create_game, game_over, pass_turn, winner
+from knight_energy.game import can_current_player_move, apply_move, create_game, game_over, pass_turn, winner
 from knight_energy.models import BoardItem, GameState, ItemType, Player, PlayerId, Position
 
 
@@ -44,6 +44,11 @@ def test_pass_turn_penalizes_score_and_changes_turn():
 
     assert new_state.machine.score == -3
     assert new_state.turn == PlayerId.HUMAN
+
+
+def test_can_current_player_move_requires_energy():
+    assert not can_current_player_move(state_with(machine_energy=0))
+    assert can_current_player_move(state_with(machine_energy=1))
 
 
 def test_game_over_when_no_stars_remain():
