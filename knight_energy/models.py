@@ -22,3 +22,25 @@ class ItemType(Enum):
 class BoardItem:
     item_type: ItemType
     value: int
+
+
+class PlayerId(Enum):
+    MACHINE = "machine"
+    HUMAN = "human"
+
+
+@dataclass(frozen=True)
+class Player:
+    player_id: PlayerId
+    position: Position
+    energy: int
+    score: int = 0
+
+
+@dataclass(frozen=True)
+class GameState:
+    machine: Player
+    human: Player
+    items: dict[Position, BoardItem]
+    turn: PlayerId
+    message: str
