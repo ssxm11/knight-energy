@@ -29,6 +29,12 @@ class PlayerId(Enum):
     HUMAN = "human"
 
 
+class Difficulty(Enum):
+    BEGINNER = "principiante"
+    AMATEUR = "amateur"
+    EXPERT = "experto"
+
+
 @dataclass(frozen=True)
 class Player:
     player_id: PlayerId
